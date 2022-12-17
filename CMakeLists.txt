@@ -39,6 +39,7 @@ set(PROJECT_SOURCES
 	src/game/gamesystem.cc headers/game/gamesystem.h
 	src/board/board.cc	headers/board/board.h
 	src/utils/alphabet.cc headers/utils/alphabet.h
+	src/utils/matrix.cc headers/utils/matrix.h
 )
 
 add_library(ChessLib STATIC ${PROJECT_SOURCES})
