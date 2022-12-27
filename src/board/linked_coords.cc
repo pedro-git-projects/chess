@@ -1,8 +1,8 @@
+#include "linked_coords.h"
 #include <algorithm>
-#include <circular_linked_coords.h>
 #include <stdexcept>
 
-CircularLinkedCoords::CircularLinkedCoords() noexcept {
+LinkedCoords::LinkedCoords() noexcept {
 	a = new Node{"a"};
 	b = new Node{"b"};
 	c = new Node{"c"};
@@ -19,9 +19,9 @@ CircularLinkedCoords::CircularLinkedCoords() noexcept {
 	e->next = f;
 	f->next = g;
 	g->next = h;
-	h->next = a;
+	h->next = nullptr;
 
-	a->previous = h;
+	a->previous = nullptr;
 	b->previous = a;
 	c->previous = b;
 	d->previous = c;
@@ -34,7 +34,7 @@ CircularLinkedCoords::CircularLinkedCoords() noexcept {
 }
 
 
-CircularLinkedCoords::CircularLinkedCoords(std::string initial) noexcept {
+LinkedCoords::LinkedCoords(std::string initial) noexcept {
 	a = new Node{"a"};
 	b = new Node{"b"};
 	c = new Node{"c"};
@@ -51,9 +51,9 @@ CircularLinkedCoords::CircularLinkedCoords(std::string initial) noexcept {
 	e->next = f;
 	f->next = g;
 	g->next = h;
-	h->next = a;
+	h->next = nullptr;
 
-	a->previous = h;
+	a->previous = nullptr;
 	b->previous = a;
 	c->previous = b;
 	d->previous = c;
@@ -75,7 +75,7 @@ CircularLinkedCoords::CircularLinkedCoords(std::string initial) noexcept {
 	}
 }
 
-const std::string CircularLinkedCoords::corresponding_string() const {
+const std::string LinkedCoords::corresponding_string() const {
 	if(current->value == "a") return "a";
 	if(current->value == "b") return "b";
 	if(current->value == "c") return "c";
@@ -88,15 +88,15 @@ const std::string CircularLinkedCoords::corresponding_string() const {
 }
 
 
-CircularLinkedCoords Coordinates::str_to_coodrinate(const std::string& value) {
-	if(value == "a") return CircularLinkedCoords{"a"};
-	if(value == "b") return CircularLinkedCoords{"b"};
-	if(value == "c") return CircularLinkedCoords{"c"};
-	if(value == "d") return CircularLinkedCoords{"d"};
-	if(value == "e") return CircularLinkedCoords{"e"};
-	if(value == "f") return CircularLinkedCoords{"f"};
-	if(value == "g") return CircularLinkedCoords{"g"};
-	if(value == "h") return CircularLinkedCoords{"h"};
+LinkedCoords LinkedCoordinates::str_to_coodrinate(const std::string& value) {
+	if(value == "a") return LinkedCoords{"a"};
+	if(value == "b") return LinkedCoords{"b"};
+	if(value == "c") return LinkedCoords{"c"};
+	if(value == "d") return LinkedCoords{"d"};
+	if(value == "e") return LinkedCoords{"e"};
+	if(value == "f") return LinkedCoords{"f"};
+	if(value == "g") return LinkedCoords{"g"};
+	if(value == "h") return LinkedCoords{"h"};
 	else throw new std::runtime_error("invalid coodrinate char");
 }
 

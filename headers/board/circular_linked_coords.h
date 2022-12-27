@@ -2,13 +2,7 @@
 #define CHESS_HEADERS_BOARD_CIRCULAR_LINKED_COORDS_H_
 
 #include <string>
-
-class Node {
-	public:
-		std::string value;
-		Node* next;
-		Node(std::string value) noexcept;
-};
+#include "node.h"
 
 class CircularLinkedCoords {
 	public:
