@@ -4,6 +4,7 @@
 #include "piece.h"
 
 class Pawn : public Piece {
+	Pawn();
 	void calculate_legal_movements() override;  
 	void update_position() override;
 };

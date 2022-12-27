@@ -1,9 +1,9 @@
 #ifndef CHESS_HEADERS_PIECE_H_
 #define CHESS_HEADERS_PIECE_H_ 
 
-#include <map>
 #include <string>
 #include <vector>
+#include <utility>
 
 enum class Color  {
 	white,
@@ -17,9 +17,9 @@ class Piece {
 		virtual void update_position() = 0;
 
 	protected:
-		std::map<std::string, int> starting_position;
-		std::map<std::string, int> current_position;
-		std::vector<std::map<std::string, int>> legal_movements;
+		std::pair<std::string, int> starting_position;
+		std::pair<std::string, int> current_position;
+		std::vector<std::pair<std::string, int>> legal_movements;
 		Color color;
 };
 

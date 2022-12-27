@@ -13,7 +13,9 @@ class Node {
 class CircularLinkedCoords {
 	public:
 		CircularLinkedCoords(std::string initial) noexcept; 
+		CircularLinkedCoords() noexcept; 
 		Node* current;
+		const std::string corresponding_string() const;
 	private:
 		Node* a;
 		Node* b;
@@ -23,6 +25,10 @@ class CircularLinkedCoords {
 		Node* f;
 		Node* g;
 		Node* h;
+};
+
+namespace Coordinates {
+	CircularLinkedCoords str_to_coodrinate(const std::string& value);
 };
 
 #endif

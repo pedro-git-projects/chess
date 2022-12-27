@@ -1,3 +1,4 @@
+#include "circular_linked_coords.h"
 #include <matrix.h>
 #include <iostream>
 #include <utility>
@@ -36,5 +37,45 @@ bool Matrix::find(std::vector<std::vector<std::pair<std::string, int>>>& matrix,
 		}
 	}
 	return false;
+}
+
+
+std::vector<std::pair<std::string, int>> Matrix::filter_by_col(std::vector<std::vector<std::pair<std::string, int>>>& matrix, const std::string& col) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row_it;
+	std::vector<std::pair<std::string, int>>::iterator col_it;
+	std::vector<std::pair<std::string, int>> result;
+
+	for(row_it = matrix.begin(); row_it != matrix.end(); row_it++) {
+		for(col_it = row_it->begin(); col_it != row_it->end(); col_it++) {
+			if(col_it->first == col) {
+				auto filtered_pair = std::make_pair(col_it->first, col_it->second);
+				result.push_back(filtered_pair);
+			}
+		}
+	}
+	return result;
+}
+
+
+std::vector<std::pair<std::string, int>> Matrix::filter_by_row(std::vector<std::vector<std::pair<std::string, int>>>& matrix, int row) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row_it;
+	std::vector<std::pair<std::string, int>>::iterator col_it;
+	std::vector<std::pair<std::string, int>> result;
+
+	for(row_it = matrix.begin(); row_it != matrix.end(); row_it++) {
+		for(col_it = row_it->begin(); col_it != row_it->end(); col_it++) {
+			if(col_it->second == row) {
+				auto filtered_pair = std::make_pair(col_it->first, col_it->second);
+				result.push_back(filtered_pair);
+			}
+		}
+	}
+	return result;
+}
+
+std::pair<std::string, int> Matrix::first_foward(std::pair<std::string, int> current_position) {
+	auto next_line = current_position.second + 1;
+	std::pair<std::string, int> result = std::make_pair(current_position.first, next_line);
+	return result;
 }
 

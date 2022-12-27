@@ -40,7 +40,6 @@ set(PROJECT_SOURCES
 	src/board/board.cc	headers/board/board.h
 	src/board/circular_linked_coords.cc	headers/board/circular_linked_coords.h
 	src/utils/matrix.cc headers/utils/matrix.h
-	headers/utils/matrixpair.h
 )
 
 add_library(ChessLib STATIC ${PROJECT_SOURCES})
