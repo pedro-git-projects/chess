@@ -97,6 +97,29 @@ std::vector<std::pair<std::string, int>> Matrix::right_diagonal(std::vector<std:
 }
 
 
+std::vector<std::pair<std::string, int>> Matrix::left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+	std::vector<std::pair<std::string, int>>left_diagonal{};
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+
+	auto coord = LinkedCoords{current_position.first};
+	coord.current = coord.current->previous;
+	auto position = current_position.second + 1;
+	auto next_left_diagonal = std::make_pair(coord.current->value, position);
+
+	while(Matrix::find(matrix, next_left_diagonal)) {
+		left_diagonal.push_back(next_left_diagonal);	
+		coord.current = coord.current->previous;
+		position++;
+		if(coord.current) {
+			next_left_diagonal = std::make_pair(coord.corresponding_string(), position);
+		} else { break; }
+	}
+
+	return left_diagonal; 
+}
+
+
 
 std::pair<std::string, int> Matrix::first_foward(std::pair<std::string, int> current_position) {
 	auto next_line = current_position.second + 1;
