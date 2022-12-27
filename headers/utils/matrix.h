@@ -13,10 +13,13 @@ namespace Matrix {
 std::vector<std::pair<std::string, int>> filter_by_col(std::vector<std::vector<std::pair<std::string, int>>>& matrix, const std::string& col);
 	std::vector<std::pair<std::string, int>> filter_by_row(std::vector<std::vector<std::pair<std::string, int>>>& matrix, int row);
 
-	std::vector<std::pair<std::string, int>> right_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
+	std::vector<std::pair<std::string, int>> foward_right_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
 
-	std::vector<std::pair<std::string, int>> left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
+	std::vector<std::pair<std::string, int>> foward_left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
 
+	std::vector<std::pair<std::string, int>> backward_right_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
+
+	std::vector<std::pair<std::string, int>> backward_left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
 
 	std::pair<std::string, int> first_foward(std::pair<std::string, int> current_position);
 };

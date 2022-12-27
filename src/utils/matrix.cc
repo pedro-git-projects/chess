@@ -74,7 +74,7 @@ std::vector<std::pair<std::string, int>> Matrix::filter_by_row(std::vector<std::
 }
 
 
-std::vector<std::pair<std::string, int>> Matrix::right_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+std::vector<std::pair<std::string, int>> Matrix::foward_right_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
 	std::vector<std::pair<std::string, int>>right_diagonal{};
 	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
 	std::vector<std::pair<std::string, int>>::iterator col;
@@ -96,8 +96,7 @@ std::vector<std::pair<std::string, int>> Matrix::right_diagonal(std::vector<std:
 	return right_diagonal; 
 }
 
-
-std::vector<std::pair<std::string, int>> Matrix::left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+std::vector<std::pair<std::string, int>> Matrix::foward_left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
 	std::vector<std::pair<std::string, int>>left_diagonal{};
 	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
 	std::vector<std::pair<std::string, int>>::iterator col;
@@ -119,6 +118,49 @@ std::vector<std::pair<std::string, int>> Matrix::left_diagonal(std::vector<std::
 	return left_diagonal; 
 }
 
+std::vector<std::pair<std::string, int>> Matrix::backward_left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+	std::vector<std::pair<std::string, int>>left_diagonal{};
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+
+	auto coord = LinkedCoords{current_position.first};
+	coord.current = coord.current->previous;
+	auto position = current_position.second - 1;
+	auto previous_left_diagonal = std::make_pair(coord.current->value, position);
+
+	while(Matrix::find(matrix, previous_left_diagonal)) {
+		left_diagonal.push_back(previous_left_diagonal);	
+		coord.current = coord.current->previous;
+		position--;
+		if(coord.current) {
+			previous_left_diagonal = std::make_pair(coord.corresponding_string(), position);
+		} else { break; }
+	}
+
+	return left_diagonal; 
+}
+
+std::vector<std::pair<std::string, int>> Matrix::backward_right_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+	std::vector<std::pair<std::string, int>>right_diagonal{};
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+
+	auto coord = LinkedCoords{current_position.first};
+	coord.current = coord.current->next;
+	auto position = current_position.second - 1;
+	auto previous_right_diagonal = std::make_pair(coord.current->value, position);
+
+	while(Matrix::find(matrix, previous_right_diagonal)) {
+		right_diagonal.push_back(previous_right_diagonal);	
+		coord.current = coord.current->next;
+		position--;
+		if(coord.current) {
+			previous_right_diagonal = std::make_pair(coord.corresponding_string(), position);
+		} else { break; }
+	}
+
+	return right_diagonal; 
+}
 
 
 std::pair<std::string, int> Matrix::first_foward(std::pair<std::string, int> current_position) {
