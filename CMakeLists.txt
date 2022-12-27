@@ -38,8 +38,9 @@ set(PROJECT_SOURCES
 	src/pieces/pawn.cc headers/pieces/pawn.h
 	src/game/gamesystem.cc headers/game/gamesystem.h
 	src/board/board.cc	headers/board/board.h
-	src/utils/alphabet.cc headers/utils/alphabet.h
+	src/board/circular_linked_coords.cc	headers/board/circular_linked_coords.h
 	src/utils/matrix.cc headers/utils/matrix.h
+	headers/utils/matrixpair.h
 )
 
 add_library(ChessLib STATIC ${PROJECT_SOURCES})
