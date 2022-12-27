@@ -28,7 +28,7 @@ TEST(BoardTest, PositionsMatrixInvartiantContains) {
 }
 
 // does not contain somehting it shouldn't
-TEST(BoardTest, PositionsMatrixInvartiantNotCotain) {
+TEST(BoardTest, PositionsMatrixInvartiantDoesNotCotain) {
 	auto board = Board{};
 	auto positions = board.positions_matrix(); 
 
