@@ -11,11 +11,11 @@
 class Board {
 	public:
 		Board();
+		std::vector<std::vector<std::pair<std::string, int>>>& positions_matrix();
 	private:
-		std::vector<std::vector<std::pair<std::string, int>>> positions_matrix;
-		std::pair<std::unique_ptr<Piece>, std::pair<std::string, int>> taken_positions;
-		const std::vector<std::pair<std::unique_ptr<Piece>, std::pair<std::string, int>>> initial_taken_positions;
+		std::vector<std::vector<std::pair<std::string, int>>> positions_matrix_;
+		std::pair<std::unique_ptr<Piece>, std::pair<std::string, int>> taken_positions_;
+		const std::vector<std::pair<std::unique_ptr<Piece>, std::pair<std::string, int>>> initial_taken_positions_;
 };
-
 
 #endif

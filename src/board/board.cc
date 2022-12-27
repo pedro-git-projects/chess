@@ -23,5 +23,9 @@ Board::Board() {
 		coord--;
 	}
 
-	positions_matrix = b;
+	positions_matrix_ = b;
+}
+
+std::vector<std::vector<std::pair<std::string, int>>>&  Board::positions_matrix() {
+	return positions_matrix_;
 }

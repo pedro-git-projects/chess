@@ -54,6 +54,8 @@ target_link_libraries(Chess ChessLib)
 
 set(TEST_SOURCES
 	tests/test.cc
+	tests/board/board_invarints_test.cc
+	tests/utils/matrix_test.cc
 )
 
 add_executable(TestRunner ${TEST_SOURCES})

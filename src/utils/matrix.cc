@@ -1,5 +1,7 @@
 #include <matrix.h>
 #include <iostream>
+#include <utility>
+#include <vector>
 
 std::vector<std::vector<std::pair<std::string, int>>> Matrix::rotate_clockwise(const std::vector<std::vector<std::pair<std::string, int>>>& matrix) {
 	std::vector<std::vector<std::pair<std::string, int>>> result;
@@ -22,3 +24,17 @@ void Matrix::print(const std::vector<std::vector<std::pair<std::string, int>>>& 
 		std::cout << std::endl;
 	}
 } 
+
+
+bool Matrix::find(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> target) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+
+	for(row = matrix.begin(); row != matrix.end(); row++) {
+		for(col = row->begin(); col != row->end(); col++) {
+			if(col->first == target.first && col->second == target.second) return true; 
+		}
+	}
+	return false;
+}
+
