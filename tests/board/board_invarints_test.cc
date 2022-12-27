@@ -17,6 +17,7 @@ TEST(BoardTest, PositionsMatrixInvartiant) {
 		for(int j = 0; j < 8; j++) {
 			auto target = std::make_pair(clc.current->value, coord);
 			auto contains = Matrix::find(positions, target);
+			clc.current = clc.current->next;
 			if(!contains) {
 				EXPECT_TRUE(contains);
 			}
