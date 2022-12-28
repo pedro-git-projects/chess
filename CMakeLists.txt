@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.14)
 
 project(Chess VERSION 0.1 LANGUAGES CXX)
@@ -41,7 +42,7 @@ set(PROJECT_SOURCES
 	src/board/node.cc   headers/board/node.h
 	src/board/linked_coords.cc	headers/board/linked_coords.h
 	src/board/circular_linked_coords.cc	headers/board/circular_linked_coords.h
-	src/utils/matrix.cc headers/utils/matrix.h
+	src/utils/coordinate_matrix.cc headers/utils/coordinate_matrix.h
 )
 
 add_library(ChessLib STATIC ${PROJECT_SOURCES})
@@ -61,3 +62,4 @@ set(TEST_SOURCES
 
 add_executable(TestRunner ${TEST_SOURCES})
 target_link_libraries(TestRunner ChessLib gtest_main gmock_main)
+

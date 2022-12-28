@@ -1,5 +1,5 @@
 #include "circular_linked_coords.h"
-#include "matrix.h"
+#include "coordinate_matrix.h"
 #include <board.h>
 #include <utility>
 #include <vector>
