@@ -2,6 +2,7 @@
 #include "circular_linked_coords.h"
 #include "linked_coords.h"
 #include <iostream>
+#include <iterator>
 #include <utility>
 #include <vector>
 
@@ -166,6 +167,50 @@ std::vector<std::pair<std::string, int>> CoordinateMatrix::backward_right_diagon
 std::pair<std::string, int> CoordinateMatrix::first_foward(std::pair<std::string, int> current_position) {
 	auto next_line = current_position.second + 1;
 	std::pair<std::string, int> result = std::make_pair(current_position.first, next_line);
+	return result;
+}
+
+
+
+std::vector<std::pair<std::string, int>> CoordinateMatrix::row(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+	std::vector<std::pair<std::string, int>> matrix_row;
+
+	auto row_coord = current_position.second;
+	auto col_coord = LinkedCoords{current_position.first};
+	col_coord.current = col_coord.current->next; 
+
+	auto next_row = std::make_pair(col_coord.current->value, row_coord);
+
+	while(CoordinateMatrix::find(matrix, next_row)) {
+		matrix_row.push_back(next_row);
+		col_coord.current = col_coord.current->next;
+
+		if(col_coord.current) {
+			next_row = std::make_pair(col_coord.corresponding_string(), row_coord);
+		} else { break; }
+	}
+
+	return matrix_row;
+}
+
+
+std::vector<std::pair<std::string, int>> CoordinateMatrix::col(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+	std::vector<std::pair<std::string, int>> result;
+
+	auto col_coord  = current_position.first;
+
+	for(row = matrix.begin(); row != matrix.end(); row++) {
+		for(col = row->begin(); col != row->end(); col++) {
+			if(col->first ==  col_coord) {
+				auto contained_pair = std::make_pair(col->first, col->second);
+				result.push_back(contained_pair);
+			}
+		}
+	}
 	return result;
 }
 
