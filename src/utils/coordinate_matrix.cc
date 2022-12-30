@@ -18,7 +18,6 @@ std::vector<std::vector<std::pair<std::string, int>>> CoordinateMatrix::rotate_c
 	return result;
 }
 
-
 void CoordinateMatrix::print(const std::vector<std::vector<std::pair<std::string, int>>>& matrix) {
 	for(int i = 0; i < matrix[0].size(); i++) {
 		for(int j = matrix.size() - 1; j >= 0; j-- ) {
@@ -27,7 +26,6 @@ void CoordinateMatrix::print(const std::vector<std::vector<std::pair<std::string
 		std::cout << std::endl;
 	}
 } 
-
 
 bool CoordinateMatrix::find(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> target) {
 	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
@@ -40,7 +38,6 @@ bool CoordinateMatrix::find(std::vector<std::vector<std::pair<std::string, int>>
 	}
 	return false;
 }
-
 
 std::vector<std::pair<std::string, int>> CoordinateMatrix::filter_by_col(std::vector<std::vector<std::pair<std::string, int>>>& matrix, const std::string& col) {
 	std::vector<std::vector<std::pair<std::string, int>>>::iterator row_it;
@@ -171,6 +168,11 @@ std::pair<std::string, int> CoordinateMatrix::first_foward(std::pair<std::string
 }
 
 
+std::pair<std::string, int> CoordinateMatrix::n_foward(std::pair<std::string, int> current_position, int n) {
+	auto next_line = current_position.second + n;
+	std::pair<std::string, int> result = std::make_pair(current_position.first, next_line);
+	return result;
+}
 
 std::vector<std::pair<std::string, int>> CoordinateMatrix::row(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
 	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
@@ -271,7 +273,7 @@ std::vector<std::pair<std::string, int>> CoordinateMatrix::l(std::vector<std::ve
 	if(CoordinateMatrix::find(matrix, next_r_down_l)) {
 		result.push_back(next_r_down_l);
 	}
-	
+
 	// left down col L
 	auto l_down_col_coord = LinkedCoords{current_position.first};
 	l_down_col_coord.current = l_down_col_coord.current->previous;
@@ -293,7 +295,7 @@ std::vector<std::pair<std::string, int>> CoordinateMatrix::l(std::vector<std::ve
 	if(CoordinateMatrix::find(matrix, next_l_up_l)) {
 		result.push_back(next_l_up_l);
 	}
-	
+
 	// right up right L
 	auto r_up_col_coord = LinkedCoords{current_position.first};
 	r_up_col_coord.current = r_up_col_coord.current->next;
@@ -307,3 +309,25 @@ std::vector<std::pair<std::string, int>> CoordinateMatrix::l(std::vector<std::ve
 
 	return result;
 }
+
+
+std::vector<std::pair<std::string, int>> CoordinateMatrix::extremities(std::vector<std::vector<std::pair<std::string, int>>>& matrix) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator i;
+	std::vector<std::pair<std::string, int>> result;
+	int rep = 0;
+
+	for(i = matrix.begin(); i != matrix.end(); i++) {
+		if(rep == 0) {
+			result.push_back(std::make_pair(i->begin()->first, i->begin()->second));
+			result.push_back(std::make_pair(i->rbegin()->first, i->rbegin()->second));
+		}
+		rep++;
+		if(rep == i->size()) {
+			std::cout << rep << std::endl; 
+			result.push_back(std::make_pair(i->begin()->first, i->begin()->second));
+			result.push_back(std::make_pair(i->rbegin()->first, i->rbegin()->second));
+		}
+	}
+	return result;
+}
+

@@ -12,6 +12,7 @@ class Board {
 	public:
 		Board();
 		std::vector<std::vector<std::pair<std::string, int>>>& positions_matrix();
+		std::vector<std::vector<std::pair<std::string, int>>>& board_state();
 	private:
 		std::vector<std::vector<std::pair<std::string, int>>> positions_matrix_;
 		std::pair<std::unique_ptr<Piece>, std::pair<std::string, int>> taken_positions_;

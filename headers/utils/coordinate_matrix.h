@@ -20,6 +20,8 @@ std::vector<std::pair<std::string, int>> filter_by_col(std::vector<std::vector<s
 	std::vector<std::pair<std::string, int>> backward_left_diagonal(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
 	std::vector<std::pair<std::string, int>> l(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position);
 	std::pair<std::string, int> first_foward(std::pair<std::string, int> current_position);
+	std::pair<std::string, int> n_foward(std::pair<std::string, int> current_position, int n);
+	std::vector<std::pair<std::string, int>> extremities(std::vector<std::vector<std::pair<std::string, int>>>& matrix);
 };
 
 #endif

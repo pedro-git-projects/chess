@@ -29,3 +29,7 @@ Board::Board() {
 std::vector<std::vector<std::pair<std::string, int>>>&  Board::positions_matrix() {
 	return positions_matrix_;
 }
+
+std::vector<std::vector<std::pair<std::string, int>>>&  Board::board_state() {
+	return positions_matrix_;
+}

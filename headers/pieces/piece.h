@@ -13,14 +13,14 @@ enum class Color  {
 class Piece {
 	public:
 		virtual ~Piece() = default;
-		virtual void calculate_legal_movements() = 0; 
+		virtual void calculate_legal_movements(std::vector<std::vector<std::pair<std::string, int>>> board_state) = 0; 
 		virtual void update_position() = 0;
 
 	protected:
-		std::pair<std::string, int> starting_position;
-		std::pair<std::string, int> current_position;
-		std::vector<std::pair<std::string, int>> legal_movements;
-		Color color;
+		std::pair<std::string, int> starting_position_;
+		std::pair<std::string, int> current_position_;
+		std::vector<std::pair<std::string, int>> current_legal_movements_;
+		Color color_;
 };
 
 #endif
