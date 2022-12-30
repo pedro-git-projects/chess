@@ -214,3 +214,96 @@ std::vector<std::pair<std::string, int>> CoordinateMatrix::col(std::vector<std::
 	return result;
 }
 
+
+// break into eight functions
+std::vector<std::pair<std::string, int>> CoordinateMatrix::l(std::vector<std::vector<std::pair<std::string, int>>>& matrix, std::pair<std::string, int> current_position) {
+	std::vector<std::vector<std::pair<std::string, int>>>::iterator row;
+	std::vector<std::pair<std::string, int>>::iterator col;
+	std::vector<std::pair<std::string, int>> result;
+
+	// foward right L
+	auto foward_r_col_coord = LinkedCoords{current_position.first};
+	foward_r_col_coord.current = foward_r_col_coord.current->next;
+	auto foward_r_row_coord = current_position.second;
+	foward_r_row_coord += 2;
+	auto next_foward_r_l = std::make_pair(foward_r_col_coord.corresponding_string(), foward_r_row_coord);
+	if(CoordinateMatrix::find(matrix, next_foward_r_l)) {
+		result.push_back(next_foward_r_l);
+	}
+
+	//foward left L
+	auto foward_l_col_coord = LinkedCoords{current_position.first};
+	foward_l_col_coord.current = foward_l_col_coord.current->previous;
+	auto foward_l_row_coord = current_position.second;
+	foward_l_row_coord += 2;
+	auto next_foward_l_l = std::make_pair(foward_l_col_coord.corresponding_string(), foward_r_row_coord);
+	if(CoordinateMatrix::find(matrix, next_foward_l_l)) {
+		result.push_back(next_foward_l_l);
+	}
+
+	// backward right L
+	auto backward_r_col_coord = LinkedCoords{current_position.first};
+	backward_r_col_coord.current = backward_r_col_coord.current->next;
+	auto backward_r_row_coord = current_position.second;
+	backward_r_row_coord -= 2;
+	auto next_backward_r_l = std::make_pair(backward_r_col_coord.corresponding_string(), backward_r_row_coord);
+	if(CoordinateMatrix::find(matrix, next_backward_r_l)) {
+		result.push_back(next_backward_r_l);
+	}
+
+	//backward left L
+	auto backward_l_col_coord = LinkedCoords{current_position.first};
+	backward_l_col_coord.current = backward_l_col_coord.current->previous;
+	auto backward_l_row_coord = current_position.second;
+	backward_l_row_coord -= 2;
+	auto next_backward_l_l = std::make_pair(backward_l_col_coord.corresponding_string(), backward_l_row_coord);
+	if(CoordinateMatrix::find(matrix, next_backward_l_l)) {
+		result.push_back(next_backward_l_l);
+	}
+
+	// right down col L
+	auto r_down_col_coord = LinkedCoords{current_position.first};
+	r_down_col_coord .current = r_down_col_coord.current->next;
+	r_down_col_coord .current = r_down_col_coord.current->next;
+	auto r_down_row_coord = current_position.second;
+	r_down_row_coord--;
+	auto next_r_down_l = std::make_pair(r_down_col_coord.corresponding_string(), r_down_row_coord);
+	if(CoordinateMatrix::find(matrix, next_r_down_l)) {
+		result.push_back(next_r_down_l);
+	}
+	
+	// left down col L
+	auto l_down_col_coord = LinkedCoords{current_position.first};
+	l_down_col_coord.current = l_down_col_coord.current->previous;
+	l_down_col_coord.current = l_down_col_coord.current->previous;
+	auto l_down_row_coord = current_position.second;
+	l_down_row_coord--;
+	auto next_l_down_l = std::make_pair(l_down_col_coord.corresponding_string(), l_down_row_coord);
+	if(CoordinateMatrix::find(matrix, next_l_down_l)) {
+		result.push_back(next_l_down_l);
+	}
+
+	// left up left L
+	auto l_up_col_coord = LinkedCoords{current_position.first};
+	l_up_col_coord.current = l_up_col_coord.current->previous;
+	l_up_col_coord.current = l_up_col_coord.current->previous;
+	auto l_up_row_coord = current_position.second;
+	l_up_row_coord++;
+	auto next_l_up_l = std::make_pair(l_up_col_coord.corresponding_string(), l_up_row_coord);
+	if(CoordinateMatrix::find(matrix, next_l_up_l)) {
+		result.push_back(next_l_up_l);
+	}
+	
+	// right up right L
+	auto r_up_col_coord = LinkedCoords{current_position.first};
+	r_up_col_coord.current = r_up_col_coord.current->next;
+	r_up_col_coord.current = r_up_col_coord.current->next;
+	auto r_up_row_coord = current_position.second;
+	r_up_row_coord++;
+	auto next_r_up_l = std::make_pair(r_up_col_coord.corresponding_string(), r_up_row_coord);
+	if(CoordinateMatrix::find(matrix, next_r_up_l)) {
+		result.push_back(next_r_up_l);
+	}	
+
+	return result;
+}
